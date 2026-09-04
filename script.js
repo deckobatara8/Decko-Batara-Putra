@@ -552,3 +552,13 @@ function escapeHTML(text) {
 
     return div.innerHTML;
                           }
+
+function resetPosition() {
+
+    if (!gameRunning) return;
+
+    player.x = 1;
+    player.y = 1;
+
+    drawMaze();
+}
