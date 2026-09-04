@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Escape</title>
-
-    <!-- CSS -->
+    <title>Maze Challenge</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- MENU AWAL -->
     <div id="menu" class="screen">
         <div class="card">
-            <h1>🧩 MAZE ESCAPE</h1>
-            <p class="subtitle">Temukan jalan keluar dari labirin!</p>
+            <div class="logo">🧩</div>
+            <h1>MAZE CHALLENGE</h1>
+            <p class="subtitle">Seberapa cepat kamu bisa keluar?</p>
 
-            <input
-                type="text"
-                id="username"
+            <input 
+                type="text" 
+                id="username" 
                 placeholder="Masukkan Username"
                 maxlength="20"
             >
 
-            <input
-                type="tel"
-                id="whatsapp"
+            <input 
+                type="tel" 
+                id="whatsapp" 
                 placeholder="Nomor WhatsApp"
                 maxlength="15"
             >
 
-            <button onclick="startGame()">🎮 MULAI BERMAIN</button>
+            <button id="startBtn" class="main-btn">
+                ▶ MULAI BERMAIN
+            </button>
 
-            <button class="leaderboard-btn" onclick="showLeaderboard()">
+            <button id="leaderboardBtn" class="secondary-btn">
                 🏆 LEADERBOARD
             </button>
 
@@ -41,90 +41,120 @@
         </div>
     </div>
 
-
     <!-- GAME -->
     <div id="gameScreen" class="screen hidden">
 
-        <div class="game-header">
+        <header class="game-header">
             <div>
-                👤 <span id="playerName">Player</span>
+                <span>Pemain</span>
+                <strong id="playerName">-</strong>
             </div>
 
-            <div>
-                ⏱️ <span id="timer">0.00</span> detik
+            <div class="timer-box">
+                ⏱️ <span id="timer">00:00.00</span>
             </div>
-        </div>
+        </header>
 
-        <div class="maze-container">
-            <canvas id="mazeCanvas"></canvas>
-        </div>
+        <main class="game-container">
 
-        <p class="instruction">
-            Gunakan tombol <b>← ↑ ↓ →</b> atau tombol di bawah untuk bergerak.
-        </p>
-
-        <!-- CONTROLLER HP -->
-        <div class="controls">
-
-            <button onclick="movePlayer(0,-1)">⬆️</button>
-
-            <div>
-                <button onclick="movePlayer(-1,0)">⬅️</button>
-                <button onclick="movePlayer(0,1)">⬇️</button>
-                <button onclick="movePlayer(1,0)">➡️</button>
+            <div class="maze-wrapper">
+                <canvas id="mazeCanvas"></canvas>
             </div>
 
-        </div>
+            <p class="instruction">
+                🟢 Mulai &nbsp; • &nbsp; 🔴 Keluar
+            </p>
 
+            <!-- KONTROL HP -->
+            <div class="controls">
+
+                <button class="control empty"></button>
+
+                <button class="control" data-dir="up">
+                    ▲
+                </button>
+
+                <button class="control empty"></button>
+
+                <button class="control" data-dir="left">
+                    ◀
+                </button>
+
+                <button class="control" data-dir="down">
+                    ▼
+                </button>
+
+                <button class="control" data-dir="right">
+                    ▶
+                </button>
+
+            </div>
+
+            <button id="quitBtn" class="quit-btn">
+                ✕ Keluar Game
+            </button>
+
+        </main>
     </div>
-
 
     <!-- HASIL -->
     <div id="resultScreen" class="screen hidden">
-        <div class="card">
+        <div class="card result-card">
 
-            <h1>🎉 BERHASIL!</h1>
+            <div class="trophy">🏆</div>
 
-            <p>Selamat <b id="resultName"></b>!</p>
+            <h1>LABIRIN SELESAI!</h1>
+
+            <p>Selamat, <strong id="resultName"></strong>!</p>
 
             <div class="result-time">
-                <span>Waktu kamu</span>
-                <strong id="resultTime">0</strong>
-                <span>detik</span>
+                <span>Waktu Kamu</span>
+                <strong id="finalTime">00:00.00</strong>
             </div>
 
-            <button onclick="restartGame()">
+            <p id="saveStatus">
+                Menyimpan skor...
+            </p>
+
+            <button id="playAgainBtn" class="main-btn">
                 🔄 MAIN LAGI
             </button>
 
-            <button class="leaderboard-btn" onclick="showLeaderboard()">
-                🏆 LIHAT LEADERBOARD
+            <button id="resultLeaderboardBtn" class="secondary-btn">
+                🏆 LEADERBOARD
             </button>
 
         </div>
     </div>
-
 
     <!-- LEADERBOARD -->
     <div id="leaderboardScreen" class="screen hidden">
-        <div class="card leaderboard">
 
-            <h1>🏆 LEADERBOARD</h1>
+        <div class="leaderboard-card">
 
-            <div id="leaderboardList">
-                <!-- Data leaderboard muncul di sini -->
+            <div class="leaderboard-title">
+                <span>🏆</span>
+                <h1>LEADERBOARD</h1>
             </div>
 
-            <button onclick="backToMenu()">
-                ⬅️ KEMBALI
+            <p class="small-text">
+                Waktu tercepat berada di posisi teratas
+            </p>
+
+            <div id="leaderboardList">
+                <div class="loading">
+                    Memuat leaderboard...
+                </div>
+            </div>
+
+            <button id="backBtn" class="secondary-btn">
+                ← KEMBALI
             </button>
 
         </div>
+
     </div>
 
-
-    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
-
 </body>
 </html>
