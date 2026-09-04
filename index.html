@@ -2,159 +2,428 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Challenge</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#070b16">
+
+    <title>Maze Escape</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- MENU AWAL -->
-    <div id="menu" class="screen">
-        <div class="card">
-            <div class="logo">🧩</div>
-            <h1>MAZE CHALLENGE</h1>
-            <p class="subtitle">Seberapa cepat kamu bisa keluar?</p>
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
 
-            <input 
-                type="text" 
-                id="username" 
-                placeholder="Masukkan Username"
-                maxlength="20"
-            >
-
-            <input 
-                type="tel" 
-                id="whatsapp" 
-                placeholder="Nomor WhatsApp"
-                maxlength="15"
-            >
-
-            <button id="startBtn" class="main-btn">
-                ▶ MULAI BERMAIN
-            </button>
-
-            <button id="leaderboardBtn" class="secondary-btn">
-                🏆 LEADERBOARD
-            </button>
-
-            <p id="error"></p>
-        </div>
+    <div class="background">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid"></div>
     </div>
 
-    <!-- GAME -->
-    <div id="gameScreen" class="screen hidden">
 
-        <header class="game-header">
-            <div>
-                <span>Pemain</span>
-                <strong id="playerName">-</strong>
-            </div>
+    <!-- =========================
+         HOME
+    ========================== -->
 
-            <div class="timer-box">
-                ⏱️ <span id="timer">00:00.00</span>
-            </div>
-        </header>
+    <section id="homeScreen" class="screen active">
 
-        <main class="game-container">
+        <div class="home-container">
 
-            <div class="maze-wrapper">
-                <canvas id="mazeCanvas"></canvas>
-            </div>
-
-            <p class="instruction">
-                🟢 Mulai &nbsp; • &nbsp; 🔴 Keluar
-            </p>
-
-            <!-- KONTROL HP -->
-            <div class="controls">
-
-                <button class="control empty"></button>
-
-                <button class="control" data-dir="up">
-                    ▲
-                </button>
-
-                <button class="control empty"></button>
-
-                <button class="control" data-dir="left">
-                    ◀
-                </button>
-
-                <button class="control" data-dir="down">
-                    ▼
-                </button>
-
-                <button class="control" data-dir="right">
-                    ▶
-                </button>
-
-            </div>
-
-            <button id="quitBtn" class="quit-btn">
-                ✕ Keluar Game
-            </button>
-
-        </main>
-    </div>
-
-    <!-- HASIL -->
-    <div id="resultScreen" class="screen hidden">
-        <div class="card result-card">
-
-            <div class="trophy">🏆</div>
-
-            <h1>LABIRIN SELESAI!</h1>
-
-            <p>Selamat, <strong id="resultName"></strong>!</p>
-
-            <div class="result-time">
-                <span>Waktu Kamu</span>
-                <strong id="finalTime">00:00.00</strong>
-            </div>
-
-            <p id="saveStatus">
-                Menyimpan skor...
-            </p>
-
-            <button id="playAgainBtn" class="main-btn">
-                🔄 MAIN LAGI
-            </button>
-
-            <button id="resultLeaderboardBtn" class="secondary-btn">
-                🏆 LEADERBOARD
-            </button>
-
-        </div>
-    </div>
-
-    <!-- LEADERBOARD -->
-    <div id="leaderboardScreen" class="screen hidden">
-
-        <div class="leaderboard-card">
-
-            <div class="leaderboard-title">
-                <span>🏆</span>
-                <h1>LEADERBOARD</h1>
-            </div>
-
-            <p class="small-text">
-                Waktu tercepat berada di posisi teratas
-            </p>
-
-            <div id="leaderboardList">
-                <div class="loading">
-                    Memuat leaderboard...
+            <div class="game-logo">
+                <div class="logo-maze">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
 
-            <button id="backBtn" class="secondary-btn">
-                ← KEMBALI
+            <div class="brand">
+                <p class="mini-title">CHALLENGE YOURSELF</p>
+
+                <h1>
+                    MAZE<span>ESCAPE</span>
+                </h1>
+
+                <p class="tagline">
+                    Find the exit. Beat the clock.
+                </p>
+            </div>
+
+
+            <!-- PLAYER FORM -->
+
+            <div class="form-card">
+
+                <div class="input-group">
+
+                    <label>
+                        <span>👤</span>
+                        PLAYER NAME
+                    </label>
+
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="Masukkan username"
+                        maxlength="20"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        <span>📱</span>
+                        WHATSAPP
+                    </label>
+
+                    <input
+                        id="whatsapp"
+                        type="tel"
+                        placeholder="08xxxxxxxxxx"
+                        maxlength="15"
+                        inputmode="numeric"
+                    >
+
+                </div>
+
+                <p id="errorMessage" class="error"></p>
+
+
+                <button
+                    id="startButton"
+                    class="play-button"
+                >
+
+                    <span>PLAY NOW</span>
+                    <b>➜</b>
+
+                </button>
+
+            </div>
+
+
+            <!-- LEADERBOARD BUTTON -->
+
+            <button
+                id="openLeaderboard"
+                class="leaderboard-button"
+            >
+
+                <span class="trophy-icon">🏆</span>
+
+                <span>
+                    <small>CHECK THE</small>
+                    LEADERBOARD
+                </span>
+
+                <b>›</b>
+
+            </button>
+
+
+            <p class="version">
+                MAZE ESCAPE • v1.0
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         GAME SCREEN
+    ========================== -->
+
+    <section id="gameScreen" class="screen game-screen">
+
+        <!-- HUD -->
+
+        <header class="game-hud">
+
+            <div class="hud-player">
+
+                <div class="avatar">
+                    👤
+                </div>
+
+                <div>
+                    <small>PLAYER</small>
+                    <strong id="hudUsername">PLAYER</strong>
+                </div>
+
+            </div>
+
+
+            <div class="hud-time">
+
+                <small>TIME</small>
+
+                <strong id="timer">
+                    00:00.00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- LEVEL -->
+
+        <div class="level-info">
+
+            <div>
+                <span>LEVEL</span>
+                <strong>01</strong>
+            </div>
+
+            <div class="difficulty">
+                <span>DIFFICULTY</span>
+
+                <strong>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i class="off"></i>
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- MAZE -->
+
+        <main class="maze-area">
+
+            <div class="maze-frame">
+
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+                <canvas id="mazeCanvas"></canvas>
+
+            </div>
+
+
+            <div class="maze-help">
+
+                <span class="start-dot"></span>
+                START
+
+                <span class="line"></span>
+
+                EXIT
+                <span class="exit-dot"></span>
+
+            </div>
+
+        </main>
+
+
+        <!-- CONTROLLER -->
+
+        <div class="controller">
+
+            <button
+                class="control up"
+                data-direction="up"
+            >
+                ▲
+            </button>
+
+            <button
+                class="control left"
+                data-direction="left"
+            >
+                ◀
+            </button>
+
+            <div class="controller-center">
+                ✦
+            </div>
+
+            <button
+                class="control right"
+                data-direction="right"
+            >
+                ▶
+            </button>
+
+            <button
+                class="control down"
+                data-direction="down"
+            >
+                ▼
             </button>
 
         </div>
 
-    </div>
+
+        <button
+            id="quitButton"
+            class="quit-button"
+        >
+            EXIT GAME
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+    <section id="resultScreen" class="screen">
+
+        <div class="result-container">
+
+            <div class="win-icon">
+                🏆
+            </div>
+
+            <p class="mini-title">
+                MISSION COMPLETE
+            </p>
+
+            <h2>
+                YOU ESCAPED!
+            </h2>
+
+            <p class="result-player">
+                Great job,
+                <strong id="resultUsername">
+                    PLAYER
+                </strong>
+            </p>
+
+
+            <div class="time-result">
+
+                <small>YOUR TIME</small>
+
+                <strong id="finalTime">
+                    00:00.00
+                </strong>
+
+                <span>
+                    ⏱ FAST RUNNER
+                </span>
+
+            </div>
+
+
+            <div id="saveStatus" class="save-status">
+                ⏳ Menyimpan skor...
+            </div>
+
+
+            <button
+                id="playAgain"
+                class="play-button"
+            >
+
+                <span>PLAY AGAIN</span>
+                <b>↻</b>
+
+            </button>
+
+
+            <button
+                id="resultLeaderboard"
+                class="leaderboard-button"
+            >
+
+                <span class="trophy-icon">
+                    🏆
+                </span>
+
+                <span>
+                    <small>VIEW</small>
+                    LEADERBOARD
+                </span>
+
+                <b>›</b>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         LEADERBOARD
+    ========================== -->
+
+    <section id="leaderboardScreen" class="screen">
+
+        <div class="leaderboard-container">
+
+            <button
+                id="closeLeaderboard"
+                class="close-button"
+            >
+                ×
+            </button>
+
+
+            <div class="leaderboard-heading">
+
+                <span>🏆</span>
+
+                <div>
+
+                    <p class="mini-title">
+                        TOP PLAYERS
+                    </p>
+
+                    <h2>
+                        LEADERBOARD
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p class="leaderboard-subtitle">
+                Fastest escape times
+            </p>
+
+
+            <div
+                id="leaderboardList"
+                class="leaderboard-list"
+            >
+
+                <div class="leader-loading">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 
     <script src="script.js"></script>
+
 </body>
-</html>
+    </html>
