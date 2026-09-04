@@ -229,3 +229,181 @@ canvas {
     }
 
 }
+
+/* ================================
+   GAME CONTROL
+================================ */
+
+.game-controls {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.control-title {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #90caf9;
+}
+
+
+/* D-PAD */
+
+.dpad {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    position: relative;
+}
+
+
+/* BUTTON */
+
+.control {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 16px;
+
+    border: 2px solid rgba(255,255,255,0.15);
+
+    background: linear-gradient(
+        145deg,
+        #263238,
+        #101820
+    );
+
+    color: white;
+
+    font-size: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 6px 12px rgba(0,0,0,0.4),
+        inset 0 1px 2px rgba(255,255,255,0.1);
+
+    transition:
+        transform 0.1s,
+        box-shadow 0.1s,
+        background 0.1s;
+
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* POSISI TOMBOL */
+
+.control.up {
+    top: 0;
+    left: 61px;
+}
+
+.control.left {
+    top: 61px;
+    left: 0;
+}
+
+.control.center {
+    top: 61px;
+    left: 61px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        #37474f,
+        #151e23
+    );
+
+    font-size: 20px;
+}
+
+.control.right {
+    top: 61px;
+    right: 0;
+}
+
+.control.down {
+    bottom: 0;
+    left: 61px;
+}
+
+
+/* EFEK TEKAN */
+
+.control:active {
+    transform: scale(0.88);
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.5),
+        inset 0 2px 5px rgba(0,0,0,0.4);
+}
+
+
+/* HOVER */
+
+.control:hover {
+    background: linear-gradient(
+        145deg,
+        #37474f,
+        #172027
+    );
+}
+
+
+/* TEXT */
+
+.control-info {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+
+/* HP */
+
+@media (max-width: 600px) {
+
+    .dpad {
+        width: 200px;
+        height: 200px;
+    }
+
+    .control {
+        width: 65px;
+        height: 65px;
+        font-size: 25px;
+        border-radius: 18px;
+    }
+
+    .control.up {
+        left: 67px;
+    }
+
+    .control.left {
+        top: 67px;
+    }
+
+    .control.center {
+        top: 67px;
+        left: 67px;
+    }
+
+    .control.right {
+        top: 67px;
+    }
+
+    .control.down {
+        left: 67px;
+    }
+}
