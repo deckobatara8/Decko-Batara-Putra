@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    color: white;
+}
+
+/* SCREEN */
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* CARD */
+
+.card {
+    width: 100%;
+    max-width: 430px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+
+/* INPUT */
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+/* BUTTON */
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #00c853;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    background: #00a844;
+}
+
+.leaderboard-btn {
+    background: #ff9800;
+}
+
+.leaderboard-btn:hover {
+    background: #e68900;
+}
+
+#error {
+    color: #ff5252;
+    margin-top: 10px;
+}
+
+
+/* GAME HEADER */
+
+.game-header {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0,0,0,0.4);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+/* MAZE */
+
+.maze-container {
+    background: #111;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+canvas {
+    display: block;
+    background: white;
+    max-width: 90vw;
+    max-height: 65vh;
+}
+
+
+/* INSTRUCTION */
+
+.instruction {
+    margin: 15px 0;
+    text-align: center;
+    color: #ddd;
+}
+
+
+/* CONTROLLER */
+
+.controls {
+    text-align: center;
+}
+
+.controls button {
+    width: 65px;
+    height: 55px;
+    margin: 3px;
+    padding: 0;
+    font-size: 24px;
+    background: #1976d2;
+}
+
+.controls button:hover {
+    background: #125ca5;
+}
+
+
+/* RESULT */
+
+.result-time {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.result-time strong {
+    font-size: 50px;
+    color: #00e676;
+}
+
+
+/* LEADERBOARD */
+
+.leaderboard {
+    max-width: 600px;
+}
+
+.rank {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.1);
+    margin: 8px 0;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.rank-number {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rank-name {
+    flex: 1;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.rank-time {
+    font-weight: bold;
+    color: #00e676;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .card {
+        padding: 22px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .game-header {
+        font-size: 14px;
+    }
+
+    canvas {
+        width: 90vw;
+        height: 90vw;
+    }
+
+}
