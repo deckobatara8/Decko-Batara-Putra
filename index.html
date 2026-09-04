@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Escape</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MENU AWAL -->
+    <div id="menu" class="screen">
+        <div class="card">
+            <h1>🧩 MAZE ESCAPE</h1>
+            <p class="subtitle">Temukan jalan keluar dari labirin!</p>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Masukkan Username"
+                maxlength="20"
+            >
+
+            <input
+                type="tel"
+                id="whatsapp"
+                placeholder="Nomor WhatsApp"
+                maxlength="15"
+            >
+
+            <button onclick="startGame()">🎮 MULAI BERMAIN</button>
+
+            <button class="leaderboard-btn" onclick="showLeaderboard()">
+                🏆 LEADERBOARD
+            </button>
+
+            <p id="error"></p>
+        </div>
+    </div>
+
+
+    <!-- GAME -->
+    <div id="gameScreen" class="screen hidden">
+
+        <div class="game-header">
+            <div>
+                👤 <span id="playerName">Player</span>
+            </div>
+
+            <div>
+                ⏱️ <span id="timer">0.00</span> detik
+            </div>
+        </div>
+
+        <div class="maze-container">
+            <canvas id="mazeCanvas"></canvas>
+        </div>
+
+        <p class="instruction">
+            Gunakan tombol <b>← ↑ ↓ →</b> atau tombol di bawah untuk bergerak.
+        </p>
+
+        <!-- CONTROLLER HP -->
+        <div class="controls">
+
+            <button onclick="movePlayer(0,-1)">⬆️</button>
+
+            <div>
+                <button onclick="movePlayer(-1,0)">⬅️</button>
+                <button onclick="movePlayer(0,1)">⬇️</button>
+                <button onclick="movePlayer(1,0)">➡️</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HASIL -->
+    <div id="resultScreen" class="screen hidden">
+        <div class="card">
+
+            <h1>🎉 BERHASIL!</h1>
+
+            <p>Selamat <b id="resultName"></b>!</p>
+
+            <div class="result-time">
+                <span>Waktu kamu</span>
+                <strong id="resultTime">0</strong>
+                <span>detik</span>
+            </div>
+
+            <button onclick="restartGame()">
+                🔄 MAIN LAGI
+            </button>
+
+            <button class="leaderboard-btn" onclick="showLeaderboard()">
+                🏆 LIHAT LEADERBOARD
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboardScreen" class="screen hidden">
+        <div class="card leaderboard">
+
+            <h1>🏆 LEADERBOARD</h1>
+
+            <div id="leaderboardList">
+                <!-- Data leaderboard muncul di sini -->
+            </div>
+
+            <button onclick="backToMenu()">
+                ⬅️ KEMBALI
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+                                           </html>
