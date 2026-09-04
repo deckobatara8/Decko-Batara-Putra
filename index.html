@@ -31,10 +31,10 @@
                 maxlength="15"
             >
 
-            <button id="startButton"> 🎮 MULAI BERMAIN</button>
+            <button onclick="startGame()">🎮 MULAI BERMAIN</button>
 
-            <button id="leaderboardButton" class="leaderboard-btn">
-    🏆 LEADERBOARD
+            <button class="leaderboard-btn" onclick="showLeaderboard()">
+                🏆 LEADERBOARD
             </button>
 
             <p id="error"></p>
@@ -45,45 +45,36 @@
     <!-- GAME -->
     <div id="gameScreen" class="screen hidden">
 
-    <div class="game-header">
-        <div>
-            👤 <span id="playerName">Player</span>
+        <div class="game-header">
+            <div>
+                👤 <span id="playerName">Player</span>
+            </div>
+
+            <div>
+                ⏱️ <span id="timer">0.00</span> detik
+            </div>
         </div>
 
-        <div>
-            ⏱️ <span id="timer">0.00</span>s
+        <div class="maze-container">
+            <canvas id="mazeCanvas"></canvas>
         </div>
-    </div>
 
-    <div class="maze-container">
-        <canvas id="mazeCanvas"></canvas>
-    </div>
+        <p class="instruction">
+            Gunakan tombol <b>← ↑ ↓ →</b> atau tombol di bawah untuk bergerak.
+        </p>
 
-    <p class="instruction">
-        Cari 🚪 secepat mungkin!
-    </p>
+        <!-- CONTROLLER HP -->
+        <div class="controls">
 
-    <div class="game-controls">
+            <button onclick="movePlayer(0,-1)">⬆️</button>
 
-    <div class="control-title">
-        CONTROLS
-    </div>
+            <div>
+                <button onclick="movePlayer(-1,0)">⬅️</button>
+                <button onclick="movePlayer(0,1)">⬇️</button>
+                <button onclick="movePlayer(1,0)">➡️</button>
+            </div>
 
-    <div class="dpad">
-
-        <button class="control up" id="upButton">▲</button>
-
-        <button class="control left" id="leftButton">◀</button>
-
-        <button class="control center" id="resetButton">✦</button>
-
-        <button class="control right" id="rightButton">▶</button>
-
-        <button class="control down" id="downButton">▼</button>
-
-    </div>
-
-    </div>
+        </div>
 
     </div>
 
@@ -133,7 +124,7 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-                                           </html>
+</html>
