@@ -5,20 +5,14 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-html,
 body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     font-family: Arial, sans-serif;
-    background: #0b1117;
+    background:
+        radial-gradient(circle at top, #243b55, #101827 70%);
     color: white;
+    min-height: 100vh;
+    overflow: hidden;
 }
-
-body {
-    touch-action: none;
-}
-
 
 /* =========================
    SCREEN
@@ -26,475 +20,448 @@ body {
 
 .screen {
     width: 100%;
-    height: 100dvh;
+    min-height: 100vh;
 
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    padding: 12px;
-
-    overflow: hidden;
+    padding: 20px;
 }
 
 .hidden {
     display: none !important;
 }
 
-
 /* =========================
-   MENU
+   CARD
 ========================= */
 
-#menu {
-    background:
-        radial-gradient(circle at top, #263c52, #0b1117 65%);
-}
-
 .card {
-    width: min(92vw, 420px);
-    padding: 25px;
+    width: 100%;
+    max-width: 420px;
 
-    border-radius: 22px;
+    padding: 35px 25px;
 
     background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.15);
 
-    backdrop-filter: blur(12px);
+    border-radius: 25px;
 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    backdrop-filter: blur(15px);
 
     text-align: center;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
-.card h1 {
-    font-size: clamp(25px, 7vw, 34px);
-    margin-bottom: 8px;
+.logo {
+    font-size: 65px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
 }
 
 .subtitle {
-    color: #b8c5d0;
-    margin-bottom: 20px;
+    margin: 10px 0 25px;
+    color: #b7c2d3;
 }
 
+/* =========================
+   INPUT
+========================= */
 
 input {
     width: 100%;
-    height: 50px;
 
-    margin-bottom: 10px;
-    padding: 0 15px;
+    padding: 16px;
+
+    margin-top: 12px;
 
     border: none;
+    outline: none;
+
     border-radius: 12px;
 
-    outline: none;
+    background: rgba(255,255,255,0.12);
+
+    color: white;
 
     font-size: 16px;
 }
 
+input::placeholder {
+    color: #aeb8c7;
+}
+
+/* =========================
+   BUTTON
+========================= */
 
 button {
     border: none;
     cursor: pointer;
 
     font-weight: bold;
-    color: white;
 
-    touch-action: manipulation;
+    transition: transform 0.15s;
 }
 
-.card > button {
+button:active {
+    transform: scale(0.94);
+}
+
+.main-btn {
     width: 100%;
-    height: 50px;
 
-    margin-top: 8px;
+    margin-top: 20px;
 
-    border-radius: 12px;
+    padding: 16px;
 
-    background: #00c853;
+    border-radius: 14px;
+
+    background: #20d47b;
+    color: #06140d;
+
+    font-size: 16px;
+}
+
+.secondary-btn {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.12);
+
+    color: white;
 
     font-size: 15px;
 }
 
-.card > button:active {
-    transform: scale(0.96);
-}
+.quit-btn {
+    margin-top: 15px;
 
-.leaderboard-btn {
-    background: #ff9800 !important;
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    background: rgba(255,70,70,0.15);
+
+    color: #ff7777;
 }
 
 #error {
-    margin-top: 10px;
-    color: #ff5252;
+    color: #ff6b6b;
+    margin-top: 15px;
 }
 
-
 /* =========================
-   GAME SCREEN
-========================= */
-
-#gameScreen {
-    justify-content: flex-start;
-
-    padding-top: max(8px, env(safe-area-inset-top));
-    padding-bottom: max(5px, env(safe-area-inset-bottom));
-
-    background:
-        radial-gradient(circle at center, #172632, #070b0f);
-}
-
-
-/* =========================
-   HEADER
+   GAME HEADER
 ========================= */
 
 .game-header {
     width: 100%;
-    max-width: 500px;
 
-    height: 45px;
+    padding: 15px;
 
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    padding: 0 14px;
-
-    margin-bottom: 6px;
-
-    border-radius: 12px;
-
-    background: rgba(255,255,255,0.08);
-
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#timer {
-    color: #00e676;
-    font-variant-numeric: tabular-nums;
-}
-
-
-/* =========================
-   MAZE
-========================= */
-
-.maze-container {
-    width: min(
-        94vw,
-        calc(100dvh - 260px),
-        500px
-    );
-
-    aspect-ratio: 1 / 1;
-
-    display: flex;
     align-items: center;
-    justify-content: center;
 
-    padding: 4px;
+    background: rgba(0,0,0,0.25);
 
-    border-radius: 12px;
-
-    background: #000;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,0.6),
-        0 0 20px rgba(0,200,83,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    border-radius: 7px;
-
-    image-rendering: pixelated;
+.game-header div {
+    display: flex;
+    flex-direction: column;
 }
 
+.game-header span {
+    font-size: 12px;
+    color: #9faabd;
+}
+
+.game-header strong {
+    margin-top: 3px;
+}
+
+.timer-box {
+    font-size: 18px;
+}
 
 /* =========================
-   INFO
+   GAME
 ========================= */
 
-.instruction {
-    width: 100%;
-
-    text-align: center;
-
-    margin: 5px 0;
-
-    color: #9eabb5;
-
-    font-size: 11px;
-}
-
-
-/* =========================
-   CONTROLLER
-========================= */
-
-.game-controls {
+.game-container {
     width: 100%;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
+
+    padding-top: 15px;
 }
 
-.control-title {
-    font-size: 10px;
-
-    color: #78909c;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 2px;
-}
-
-
-/* D-PAD */
-
-.dpad {
-    width: 150px;
-    height: 150px;
-
-    position: relative;
-}
-
-
-/* BUTTON */
-
-.control {
-    position: absolute;
-
-    width: 48px;
-    height: 48px;
-
-    margin: 0;
-    padding: 0;
+.maze-wrapper {
+    width: min(92vw, 500px);
+    aspect-ratio: 1 / 1;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+}
 
-    border-radius: 14px;
+#mazeCanvas {
+    width: 100%;
+    height: 100%;
 
-    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #26343d,
-            #10161b
-        );
+    background: #111827;
+
+    box-shadow:
+        0 0 0 2px rgba(255,255,255,0.08),
+        0 15px 40px rgba(0,0,0,0.5);
+
+    touch-action: none;
+}
+
+.instruction {
+    color: #9da9bc;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    width: 210px;
+
+    margin-top: 10px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 65px);
+
+    gap: 7px;
+
+    justify-content: center;
+}
+
+.control {
+    width: 65px;
+    height: 55px;
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,0.12);
 
     color: white;
 
-    font-size: 19px;
+    font-size: 22px;
 
-    box-shadow:
-        0 5px 10px rgba(0,0,0,0.45),
-        inset 0 1px rgba(255,255,255,0.08);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 
-    transition: transform 0.08s;
+    touch-action: manipulation;
 }
 
 .control:active {
-    transform: scale(0.82);
-
-    box-shadow:
-        inset 0 3px 7px rgba(0,0,0,0.6);
+    background: #20d47b;
+    color: #07140d;
 }
 
-
-/* POSISI */
-
-.control.up {
-    top: 0;
-    left: 51px;
+.empty {
+    visibility: hidden;
 }
-
-.control.left {
-    top: 51px;
-    left: 0;
-}
-
-.control.center {
-    top: 51px;
-    left: 51px;
-
-    border-radius: 50%;
-
-    font-size: 16px;
-
-    color: #00e676;
-}
-
-.control.right {
-    top: 51px;
-    right: 0;
-}
-
-.control.down {
-    bottom: 0;
-    left: 51px;
-}
-
 
 /* =========================
    RESULT
 ========================= */
 
-#resultScreen {
-    background:
-        radial-gradient(circle at center, #173d2a, #07100b);
+.result-card {
+    text-align: center;
+}
+
+.trophy {
+    font-size: 70px;
 }
 
 .result-time {
     margin: 25px 0;
 
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.08);
+}
+
+.result-time span {
+    display: block;
+
+    color: #9faabd;
+
+    margin-bottom: 8px;
 }
 
 .result-time strong {
-    font-size: 50px;
-    color: #00e676;
+    font-size: 40px;
+
+    letter-spacing: 2px;
 }
 
+#saveStatus {
+    color: #9faabd;
+    font-size: 13px;
+}
 
 /* =========================
    LEADERBOARD
 ========================= */
 
-.leaderboard {
-    max-height: 90dvh;
-    overflow: hidden;
+.leaderboard-card {
+    width: 100%;
+    max-width: 500px;
+
+    max-height: 90vh;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
 }
 
-#leaderboardList {
-    max-height: 55dvh;
-    overflow-y: auto;
-    margin: 15px 0;
+.leaderboard-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.leaderboard-title span {
+    font-size: 35px;
+}
+
+.small-text {
+    text-align: center;
+
+    margin: 8px 0 20px;
+
+    color: #9faabd;
+}
+
+.leader {
+    display: flex;
+
+    align-items: center;
+
+    padding: 13px;
+
+    margin-bottom: 8px;
+
+    background: rgba(255,255,255,0.07);
+
+    border-radius: 12px;
 }
 
 .rank {
-    display: flex;
-    align-items: center;
+    width: 40px;
 
-    padding: 12px;
+    font-size: 20px;
 
-    margin-bottom: 7px;
-
-    border-radius: 10px;
-
-    background: rgba(255,255,255,0.08);
-}
-
-.rank-number {
-    width: 35px;
     font-weight: bold;
 }
 
-.rank-name {
+.leader-info {
     flex: 1;
-    text-align: left;
 }
 
-.rank-time {
-    color: #00e676;
+.leader-name {
     font-weight: bold;
 }
 
+.leader-date {
+    color: #8995a8;
 
-/* =========================
-   HP KECIL
-========================= */
+    font-size: 11px;
 
-@media (max-height: 650px) {
-
-    .game-header {
-        height: 38px;
-        font-size: 12px;
-    }
-
-    .maze-container {
-        width: min(
-            90vw,
-            calc(100dvh - 210px)
-        );
-    }
-
-    .dpad {
-        width: 120px;
-        height: 120px;
-    }
-
-    .control {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-        border-radius: 11px;
-    }
-
-    .control.up {
-        left: 40px;
-    }
-
-    .control.left {
-        top: 40px;
-    }
-
-    .control.center {
-        top: 40px;
-        left: 40px;
-    }
-
-    .control.right {
-        top: 40px;
-    }
-
-    .control.down {
-        left: 40px;
-    }
-
-    .instruction {
-        font-size: 9px;
-    }
+    margin-top: 3px;
 }
 
+.leader-score {
+    font-weight: bold;
+
+    color: #42e892;
+}
+
+.loading {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #9faabd;
+}
 
 /* =========================
-   HP SANGAT KECIL
+   DESKTOP
 ========================= */
 
-@media (max-height: 550px) {
+@media (min-width: 700px) {
 
-    .game-header {
-        margin-bottom: 2px;
-    }
-
-    .instruction,
-    .control-title {
+    .controls {
         display: none;
     }
 
-    .maze-container {
-        width: min(
-            82vw,
-            calc(100dvh - 155px)
-        );
+    .maze-wrapper {
+        width: min(65vh, 600px);
     }
 
-    .dpad {
-        margin-top: 2px;
+    .instruction {
+        margin-top: 15px;
     }
-                        }
+}
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media (max-height: 700px) {
+
+    .maze-wrapper {
+        width: min(80vw, 380px);
+    }
+
+    .control {
+        height: 48px;
+    }
+
+    .controls {
+        margin-top: 5px;
+    }
+
+    .quit-btn {
+        margin-top: 5px;
+    }
+    }
