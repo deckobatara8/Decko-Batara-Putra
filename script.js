@@ -835,3 +835,130 @@ function escapeHTML(text) {
 
     return div.innerHTML;
     }
+
+// ==========================================
+// BUTTON EVENT
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const startButton =
+        document.getElementById("startButton");
+
+    const leaderboardButton =
+        document.getElementById("leaderboardButton");
+
+    const upButton =
+        document.getElementById("upButton");
+
+    const downButton =
+        document.getElementById("downButton");
+
+    const leftButton =
+        document.getElementById("leftButton");
+
+    const rightButton =
+        document.getElementById("rightButton");
+
+    const resetButton =
+        document.getElementById("resetButton");
+
+
+    // MULAI GAME
+    if (startButton) {
+
+        startButton.addEventListener(
+            "click",
+            function () {
+
+                startGame();
+
+            }
+        );
+    }
+
+
+    // LEADERBOARD
+    if (leaderboardButton) {
+
+        leaderboardButton.addEventListener(
+            "click",
+            function () {
+
+                showLeaderboard();
+
+            }
+        );
+    }
+
+
+    // ATAS
+    if (upButton) {
+
+        upButton.addEventListener(
+            "click",
+            function () {
+
+                movePlayer(0, -1);
+
+            }
+        );
+    }
+
+
+    // BAWAH
+    if (downButton) {
+
+        downButton.addEventListener(
+            "click",
+            function () {
+
+                movePlayer(0, 1);
+
+            }
+        );
+    }
+
+
+    // KIRI
+    if (leftButton) {
+
+        leftButton.addEventListener(
+            "click",
+            function () {
+
+                movePlayer(-1, 0);
+
+            }
+        );
+    }
+
+
+    // KANAN
+    if (rightButton) {
+
+        rightButton.addEventListener(
+            "click",
+            function () {
+
+                movePlayer(1, 0);
+
+            }
+        );
+    }
+
+
+    // RESET
+    if (resetButton) {
+
+        resetButton.addEventListener(
+            "click",
+            function () {
+
+                resetPosition();
+
+            }
+        );
+    }
+
+});
