@@ -2,23 +2,40 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
+html,
 body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
-    min-height: 100vh;
+    background: #0b1117;
     color: white;
 }
 
-/* SCREEN */
+body {
+    touch-action: none;
+}
+
+
+/* =========================
+   SCREEN
+========================= */
 
 .screen {
-    min-height: 100vh;
+    width: 100%;
+    height: 100dvh;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+
+    padding: 12px;
+
+    overflow: hidden;
 }
 
 .hidden {
@@ -26,143 +43,323 @@ body {
 }
 
 
-/* CARD */
+/* =========================
+   MENU
+========================= */
+
+#menu {
+    background:
+        radial-gradient(circle at top, #263c52, #0b1117 65%);
+}
 
 .card {
-    width: 100%;
-    max-width: 430px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
+    width: min(92vw, 420px);
+    padding: 25px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .card h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: clamp(25px, 7vw, 34px);
+    margin-bottom: 8px;
 }
 
 .subtitle {
-    color: #ddd;
-    margin-bottom: 25px;
+    color: #b8c5d0;
+    margin-bottom: 20px;
 }
 
 
-/* INPUT */
-
 input {
     width: 100%;
-    padding: 15px;
-    margin: 8px 0;
+    height: 50px;
+
+    margin-bottom: 10px;
+    padding: 0 15px;
+
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 12px;
+
     outline: none;
+
+    font-size: 16px;
+}
+
+
+button {
+    border: none;
+    cursor: pointer;
+
+    font-weight: bold;
+    color: white;
+
+    touch-action: manipulation;
+}
+
+.card > button {
+    width: 100%;
+    height: 50px;
+
+    margin-top: 8px;
+
+    border-radius: 12px;
+
+    background: #00c853;
+
+    font-size: 15px;
+}
+
+.card > button:active {
+    transform: scale(0.96);
+}
+
+.leaderboard-btn {
+    background: #ff9800 !important;
+}
+
+#error {
+    margin-top: 10px;
+    color: #ff5252;
+}
+
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+#gameScreen {
+    justify-content: flex-start;
+
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-bottom: max(5px, env(safe-area-inset-bottom));
+
+    background:
+        radial-gradient(circle at center, #172632, #070b0f);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.game-header {
+    width: 100%;
+    max-width: 500px;
+
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    margin-bottom: 6px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.08);
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#timer {
+    color: #00e676;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================
+   MAZE
+========================= */
+
+.maze-container {
+    width: min(
+        94vw,
+        calc(100dvh - 260px),
+        500px
+    );
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+
+    border-radius: 12px;
+
+    background: #000;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.6),
+        0 0 20px rgba(0,200,83,0.08);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border-radius: 7px;
+
+    image-rendering: pixelated;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.instruction {
+    width: 100%;
+
+    text-align: center;
+
+    margin: 5px 0;
+
+    color: #9eabb5;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   CONTROLLER
+========================= */
+
+.game-controls {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.control-title {
+    font-size: 10px;
+
+    color: #78909c;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 2px;
+}
+
+
+/* D-PAD */
+
+.dpad {
+    width: 150px;
+    height: 150px;
+
+    position: relative;
 }
 
 
 /* BUTTON */
 
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #00c853;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
+.control {
+    position: absolute;
 
-button:hover {
-    transform: scale(1.03);
-    background: #00a844;
-}
+    width: 48px;
+    height: 48px;
 
-.leaderboard-btn {
-    background: #ff9800;
-}
-
-.leaderboard-btn:hover {
-    background: #e68900;
-}
-
-#error {
-    color: #ff5252;
-    margin-top: 10px;
-}
-
-
-/* GAME HEADER */
-
-.game-header {
-    width: 100%;
-    max-width: 650px;
-    display: flex;
-    justify-content: space-between;
-    background: rgba(0,0,0,0.4);
-    padding: 15px 20px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-
-/* MAZE */
-
-.maze-container {
-    background: #111;
-    padding: 8px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-canvas {
-    display: block;
-    background: white;
-    max-width: 90vw;
-    max-height: 65vh;
-}
-
-
-/* INSTRUCTION */
-
-.instruction {
-    margin: 15px 0;
-    text-align: center;
-    color: #ddd;
-}
-
-
-/* CONTROLLER */
-
-.controls {
-    text-align: center;
-}
-
-.controls button {
-    width: 65px;
-    height: 55px;
-    margin: 3px;
+    margin: 0;
     padding: 0;
-    font-size: 24px;
-    background: #1976d2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background:
+        linear-gradient(
+            145deg,
+            #26343d,
+            #10161b
+        );
+
+    color: white;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 5px 10px rgba(0,0,0,0.45),
+        inset 0 1px rgba(255,255,255,0.08);
+
+    transition: transform 0.08s;
 }
 
-.controls button:hover {
-    background: #125ca5;
+.control:active {
+    transform: scale(0.82);
+
+    box-shadow:
+        inset 0 3px 7px rgba(0,0,0,0.6);
 }
 
 
-/* RESULT */
+/* POSISI */
+
+.control.up {
+    top: 0;
+    left: 51px;
+}
+
+.control.left {
+    top: 51px;
+    left: 0;
+}
+
+.control.center {
+    top: 51px;
+    left: 51px;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+
+    color: #00e676;
+}
+
+.control.right {
+    top: 51px;
+    right: 0;
+}
+
+.control.down {
+    bottom: 0;
+    left: 51px;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+#resultScreen {
+    background:
+        radial-gradient(circle at center, #173d2a, #07100b);
+}
 
 .result-time {
     margin: 25px 0;
+
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -174,236 +371,130 @@ canvas {
 }
 
 
-/* LEADERBOARD */
+/* =========================
+   LEADERBOARD
+========================= */
 
 .leaderboard {
-    max-width: 600px;
+    max-height: 90dvh;
+    overflow: hidden;
+}
+
+#leaderboardList {
+    max-height: 55dvh;
+    overflow-y: auto;
+    margin: 15px 0;
 }
 
 .rank {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: rgba(255,255,255,0.1);
-    margin: 8px 0;
-    padding: 14px;
+
+    padding: 12px;
+
+    margin-bottom: 7px;
+
     border-radius: 10px;
+
+    background: rgba(255,255,255,0.08);
 }
 
 .rank-number {
-    font-size: 20px;
+    width: 35px;
     font-weight: bold;
 }
 
 .rank-name {
     flex: 1;
     text-align: left;
-    margin-left: 15px;
 }
 
 .rank-time {
-    font-weight: bold;
     color: #00e676;
+    font-weight: bold;
 }
 
 
-/* MOBILE */
+/* =========================
+   HP KECIL
+========================= */
 
-@media (max-width: 600px) {
-
-    .card {
-        padding: 22px;
-    }
-
-    .card h1 {
-        font-size: 26px;
-    }
+@media (max-height: 650px) {
 
     .game-header {
-        font-size: 14px;
+        height: 38px;
+        font-size: 12px;
     }
 
-    canvas {
-        width: 90vw;
-        height: 90vw;
+    .maze-container {
+        width: min(
+            90vw,
+            calc(100dvh - 210px)
+        );
     }
-
-}
-
-/* ================================
-   GAME CONTROL
-================================ */
-
-.game-controls {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.control-title {
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    color: #90caf9;
-}
-
-
-/* D-PAD */
-
-.dpad {
-    width: 180px;
-    height: 180px;
-    margin: auto;
-    position: relative;
-}
-
-
-/* BUTTON */
-
-.control {
-    position: absolute;
-
-    width: 58px;
-    height: 58px;
-
-    margin: 0;
-    padding: 0;
-
-    border-radius: 16px;
-
-    border: 2px solid rgba(255,255,255,0.15);
-
-    background: linear-gradient(
-        145deg,
-        #263238,
-        #101820
-    );
-
-    color: white;
-
-    font-size: 23px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow:
-        0 6px 12px rgba(0,0,0,0.4),
-        inset 0 1px 2px rgba(255,255,255,0.1);
-
-    transition:
-        transform 0.1s,
-        box-shadow 0.1s,
-        background 0.1s;
-
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-
-/* POSISI TOMBOL */
-
-.control.up {
-    top: 0;
-    left: 61px;
-}
-
-.control.left {
-    top: 61px;
-    left: 0;
-}
-
-.control.center {
-    top: 61px;
-    left: 61px;
-
-    border-radius: 50%;
-
-    background: linear-gradient(
-        145deg,
-        #37474f,
-        #151e23
-    );
-
-    font-size: 20px;
-}
-
-.control.right {
-    top: 61px;
-    right: 0;
-}
-
-.control.down {
-    bottom: 0;
-    left: 61px;
-}
-
-
-/* EFEK TEKAN */
-
-.control:active {
-    transform: scale(0.88);
-
-    box-shadow:
-        0 2px 5px rgba(0,0,0,0.5),
-        inset 0 2px 5px rgba(0,0,0,0.4);
-}
-
-
-/* HOVER */
-
-.control:hover {
-    background: linear-gradient(
-        145deg,
-        #37474f,
-        #172027
-    );
-}
-
-
-/* TEXT */
-
-.control-info {
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 5px;
-}
-
-
-/* HP */
-
-@media (max-width: 600px) {
 
     .dpad {
-        width: 200px;
-        height: 200px;
+        width: 120px;
+        height: 120px;
     }
 
     .control {
-        width: 65px;
-        height: 65px;
-        font-size: 25px;
-        border-radius: 18px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 11px;
     }
 
     .control.up {
-        left: 67px;
+        left: 40px;
     }
 
     .control.left {
-        top: 67px;
+        top: 40px;
     }
 
     .control.center {
-        top: 67px;
-        left: 67px;
+        top: 40px;
+        left: 40px;
     }
 
     .control.right {
-        top: 67px;
+        top: 40px;
     }
 
     .control.down {
-        left: 67px;
+        left: 40px;
+    }
+
+    .instruction {
+        font-size: 9px;
     }
 }
+
+
+/* =========================
+   HP SANGAT KECIL
+========================= */
+
+@media (max-height: 550px) {
+
+    .game-header {
+        margin-bottom: 2px;
+    }
+
+    .instruction,
+    .control-title {
+        display: none;
+    }
+
+    .maze-container {
+        width: min(
+            82vw,
+            calc(100dvh - 155px)
+        );
+    }
+
+    .dpad {
+        margin-top: 2px;
+    }
+                        }
