@@ -31,10 +31,10 @@
                 maxlength="15"
             >
 
-            <button onclick="startGame()">🎮 MULAI BERMAIN</button>
+            <button id="startButton"> 🎮 MULAI BERMAIN</button>
 
-            <button class="leaderboard-btn" onclick="showLeaderboard()">
-                🏆 LEADERBOARD
+            <button id="leaderboardButton" class="leaderboard-btn">
+    🏆 LEADERBOARD
             </button>
 
             <p id="error"></p>
@@ -65,28 +65,23 @@
 
     <div class="game-controls">
 
-        <div class="control-title">
-            CONTROLS
-        </div>
+    <div class="control-title">
+        CONTROLS
+    </div>
 
-        <div class="dpad">
+    <div class="dpad">
 
-            <button class="control up"
-                onclick="movePlayer(0,-1)">▲</button>
+        <button class="control up" id="upButton">▲</button>
 
-            <button class="control left"
-                onclick="movePlayer(-1,0)">◀</button>
+        <button class="control left" id="leftButton">◀</button>
 
-            <button class="control center"
-                onclick="resetPosition()">✦</button>
+        <button class="control center" id="resetButton">✦</button>
 
-            <button class="control right"
-                onclick="movePlayer(1,0)">▶</button>
+        <button class="control right" id="rightButton">▶</button>
 
-            <button class="control down"
-                onclick="movePlayer(0,1)">▼</button>
+        <button class="control down" id="downButton">▼</button>
 
-        </div>
+    </div>
 
     </div>
 
@@ -138,7 +133,7 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
                                            </html>
