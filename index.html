@@ -45,60 +45,52 @@
     <!-- GAME -->
     <div id="gameScreen" class="screen hidden">
 
-        <div class="game-header">
-            <div>
-                👤 <span id="playerName">Player</span>
-            </div>
-
-            <div>
-                ⏱️ <span id="timer">0.00</span> detik
-            </div>
+    <div class="game-header">
+        <div>
+            👤 <span id="playerName">Player</span>
         </div>
 
-        <div class="maze-container">
-            <canvas id="mazeCanvas"></canvas>
+        <div>
+            ⏱️ <span id="timer">0.00</span>s
         </div>
-
-        <p class="instruction">
-            Gunakan tombol <b>← ↑ ↓ →</b> atau tombol di bawah untuk bergerak.
-        </p>
-
-        <!-- KONTROL GAME -->
-<div class="game-controls">
-
-    <div class="control-title">
-        🎮 CONTROLS
     </div>
 
-    <div class="dpad">
-
-        <button class="control up" onclick="movePlayer(0,-1)">
-            ▲
-        </button>
-
-        <button class="control left" onclick="movePlayer(-1,0)">
-            ◀
-        </button>
-
-        <button class="control center" onclick="resetPosition()">
-            ✦
-        </button>
-
-        <button class="control right" onclick="movePlayer(1,0)">
-            ▶
-        </button>
-
-        <button class="control down" onclick="movePlayer(0,1)">
-            ▼
-        </button>
-
+    <div class="maze-container">
+        <canvas id="mazeCanvas"></canvas>
     </div>
 
-    <p class="control-info">
-        Gunakan tombol untuk mencari jalan keluar 🚪
+    <p class="instruction">
+        Cari 🚪 secepat mungkin!
     </p>
 
-</div>
+    <div class="game-controls">
+
+        <div class="control-title">
+            CONTROLS
+        </div>
+
+        <div class="dpad">
+
+            <button class="control up"
+                onclick="movePlayer(0,-1)">▲</button>
+
+            <button class="control left"
+                onclick="movePlayer(-1,0)">◀</button>
+
+            <button class="control center"
+                onclick="resetPosition()">✦</button>
+
+            <button class="control right"
+                onclick="movePlayer(1,0)">▶</button>
+
+            <button class="control down"
+                onclick="movePlayer(0,1)">▼</button>
+
+        </div>
+
+    </div>
+
+    </div>
 
 
     <!-- HASIL -->
