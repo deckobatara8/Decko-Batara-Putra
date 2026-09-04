@@ -5,39 +5,44 @@
 const canvas = document.getElementById("mazeCanvas");
 const ctx = canvas.getContext("2d");
 
-const cellSize = 24;
-
-// 1 = tembok
-// 0 = jalan
-// P = pemain
-// E = exit
-
 // ==========================================
-// GENERATOR LABIRIN RANDOM
-// 25 x 25
-// PASTI ADA JALAN DARI START KE EXIT
+// LABIRIN RANDOM - DIJAMIN BISA DISELESAIKAN
 // ==========================================
 
 const MAZE_WIDTH = 25;
 const MAZE_HEIGHT = 25;
+const cellSize = 24;
 
-function generateMaze(width, height) {
 
-    // Semua awalnya tembok
-    const newMaze = Array.from(
-        { length: height },
-        () => Array(width).fill(1)
+// ==========================================
+// BUAT LABIRIN
+// ==========================================
+
+function createMaze() {
+
+    let maze;
+
+    do {
+        maze = generateMaze();
+
+    } while (!isMazeSolvable(maze));
+
+    return maze;
+}
+
+
+// ==========================================
+// GENERATOR LABIRIN
+// ==========================================
+
+function generateMaze() {
+
+    const maze = Array.from(
+        { length: MAZE_HEIGHT },
+        () => Array(MAZE_WIDTH).fill(1)
     );
 
-    // Arah gerakan
-    const directions = [
-        [0, -2],
-        [2, 0],
-        [0, 2],
-        [-2, 0]
-    ];
 
-    // Acak array
     function shuffle(array) {
 
         for (let i = array.length - 1; i > 0; i--) {
@@ -47,66 +52,156 @@ function generateMaze(width, height) {
             );
 
             [array[i], array[j]] =
-                [array[j], array[i]];
+            [array[j], array[i]];
         }
 
         return array;
     }
 
 
-    // DFS
     function carve(x, y) {
 
-        newMaze[y][x] = 0;
+        maze[y][x] = 0;
 
-        const dirs = shuffle(
-            [...directions]
-        );
 
-        for (const [dx, dy] of dirs) {
+        const directions = shuffle([
+            [0, -2],
+            [2, 0],
+            [0, 2],
+            [-2, 0]
+        ]);
+
+
+        for (const [dx, dy] of directions) {
 
             const nx = x + dx;
             const ny = y + dy;
 
-            // Jangan keluar batas
+
             if (
-                nx <= 0 ||
-                nx >= width - 1 ||
-                ny <= 0 ||
-                ny >= height - 1
+                nx > 0 &&
+                nx < MAZE_WIDTH - 1 &&
+                ny > 0 &&
+                ny < MAZE_HEIGHT - 1 &&
+                maze[ny][nx] === 1
             ) {
-                continue;
-            }
 
-            // Kalau masih tembok
-            if (newMaze[ny][nx] === 1) {
-
-                // Buka tembok di antara
-                newMaze[
+                maze[
                     y + dy / 2
                 ][
                     x + dx / 2
                 ] = 0;
 
-                // Lanjut
+
                 carve(nx, ny);
             }
         }
     }
 
 
-    // Mulai dari kiri atas
+    // START
     carve(1, 1);
 
-    return newMaze;
+
+    // Pastikan START terbuka
+    maze[1][1] = 0;
+
+
+    // Pastikan EXIT terbuka
+    maze[MAZE_HEIGHT - 2][MAZE_WIDTH - 2] = 0;
+
+
+    return maze;
 }
 
 
-// Buat labirin baru
-const maze = generateMaze(
-    MAZE_WIDTH,
-    MAZE_HEIGHT
-);
+// ==========================================
+// CEK APAKAH ADA JALAN KE EXIT
+// ==========================================
+
+function isMazeSolvable(maze) {
+
+    const start = {
+        x: 1,
+        y: 1
+    };
+
+
+    const target = {
+        x: MAZE_WIDTH - 2,
+        y: MAZE_HEIGHT - 2
+    };
+
+
+    const queue = [start];
+
+
+    const visited = Array.from(
+        { length: MAZE_HEIGHT },
+        () => Array(MAZE_WIDTH).fill(false)
+    );
+
+
+    visited[start.y][start.x] = true;
+
+
+    const directions = [
+        [0, -1],
+        [1, 0],
+        [0, 1],
+        [-1, 0]
+    ];
+
+
+    while (queue.length > 0) {
+
+        const current = queue.shift();
+
+
+        // EXIT DITEMUKAN
+        if (
+            current.x === target.x &&
+            current.y === target.y
+        ) {
+            return true;
+        }
+
+
+        for (const [dx, dy] of directions) {
+
+            const nx = current.x + dx;
+            const ny = current.y + dy;
+
+
+            if (
+                nx >= 0 &&
+                nx < MAZE_WIDTH &&
+                ny >= 0 &&
+                ny < MAZE_HEIGHT &&
+                maze[ny][nx] === 0 &&
+                !visited[ny][nx]
+            ) {
+
+                visited[ny][nx] = true;
+
+                queue.push({
+                    x: nx,
+                    y: ny
+                });
+            }
+        }
+    }
+
+
+    return false;
+}
+
+
+// ==========================================
+// BUAT LABIRIN
+// ==========================================
+
+const maze = createMaze();
 
 
 // ==========================================
@@ -129,8 +224,23 @@ const exit = {
 };
 
 
-// Pastikan EXIT terbuka
-maze[exit.y][exit.x] = 0;
+// ==========================================
+// CANVAS
+// ==========================================
+
+const canvas =
+    document.getElementById("mazeCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+canvas.width =
+    MAZE_WIDTH * cellSize;
+
+canvas.height =
+    MAZE_HEIGHT * cellSize;
+
 
 
 
