@@ -63,20 +63,42 @@
             Gunakan tombol <b>← ↑ ↓ →</b> atau tombol di bawah untuk bergerak.
         </p>
 
-        <!-- CONTROLLER HP -->
-        <div class="controls">
+        <!-- KONTROL GAME -->
+<div class="game-controls">
 
-            <button onclick="movePlayer(0,-1)">⬆️</button>
+    <div class="control-title">
+        🎮 CONTROLS
+    </div>
 
-            <div>
-                <button onclick="movePlayer(-1,0)">⬅️</button>
-                <button onclick="movePlayer(0,1)">⬇️</button>
-                <button onclick="movePlayer(1,0)">➡️</button>
-            </div>
+    <div class="dpad">
 
-        </div>
+        <button class="control up" onclick="movePlayer(0,-1)">
+            ▲
+        </button>
+
+        <button class="control left" onclick="movePlayer(-1,0)">
+            ◀
+        </button>
+
+        <button class="control center" onclick="resetPosition()">
+            ✦
+        </button>
+
+        <button class="control right" onclick="movePlayer(1,0)">
+            ▶
+        </button>
+
+        <button class="control down" onclick="movePlayer(0,1)">
+            ▼
+        </button>
 
     </div>
+
+    <p class="control-info">
+        Gunakan tombol untuk mencari jalan keluar 🚪
+    </p>
+
+</div>
 
 
     <!-- HASIL -->
