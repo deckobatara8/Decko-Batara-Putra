@@ -242,10 +242,6 @@ canvas.height =
     MAZE_HEIGHT * cellSize;
 
 
-
-
-
-
 // DATA PEMAIN
 
 let username = "";
