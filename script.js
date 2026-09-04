@@ -5,7 +5,7 @@
 const canvas = document.getElementById("mazeCanvas");
 const ctx = canvas.getContext("2d");
 
-const cellSize = 40;
+const cellSize = 30;
 
 // 1 = tembok
 // 0 = jalan
@@ -46,8 +46,8 @@ let player = {
 // POSISI EXIT
 
 const exit = {
-    x: 11,
-    y: 9
+    x: 17,
+    y: 17
 };
 
 
